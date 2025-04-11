@@ -40,7 +40,7 @@ const renderTasks = (filter = "") => {
     const taskEl = document.createElement("div");
     taskEl.className = "task";
 
-    const quemVaiLevar = task.person ? `<small> - Levado por: ${task.person}</small>` : "";
+    const quemVaiLevar = task.person ? `<small> - Reservado por: ${task.person}</small>` : "";
 
     taskEl.innerHTML = `
       <input type="checkbox" class="task-check" ${task.completed ? "checked" : ""}>
