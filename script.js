@@ -33,8 +33,8 @@ const fixedTasks = {
   presente6: { name: "Faqueiro", completed: false }
 };
 
-// ⚠️ Descomente a linha abaixo para rodar uma vez e popular o Firebase
-// Object.entries(fixedTasks).forEach(([id, task]) => set(ref(db, `tasks/${id}`), task));
+
+Object.entries(fixedTasks).forEach(([id, task]) => set(ref(db, `tasks/${id}`), task));
 
 // 🎯 Elementos da página
 const tasksContainer = document.querySelector("#tasks");
