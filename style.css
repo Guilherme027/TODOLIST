@@ -148,3 +148,24 @@ body {
   padding: 1em 0;
   border-radius: 0.5em;
 }
+
+
+/* Estilo para o container da lista com rolagem */
+#tasks {
+  max-height: 400px; /* Ajuste essa altura como quiser */
+  overflow-y: auto;
+  padding-right: 10px; /* Espaço para não cortar a barra de rolagem */
+  margin-top: 1rem;
+}
+
+/* Personalização da barra de rolagem (opcional) */
+#tasks::-webkit-scrollbar {
+  width: 6px;
+}
+#tasks::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+#tasks::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
