@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List New</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 id="title">CHÁ DE PANELA</h1>
+    <div class="app">
+      <div class="container">
+        <div id="wrapper">
+          <input type="text" placeholder="Itens..." />
+          <button id="add-btn">Adicionar</button>
+        </div>
+        <div id="tasks">
+          <p id="pending-tasks">
+            Lista de presentes (<span class="count-value">0</span>) .
+          </p>
+        </div>
+      </div>
+      <p id="error">Input cannot be empty!</p>
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>
