@@ -28,7 +28,7 @@ const searchInput = document.querySelector("#search-input");
 let allTasks = [];
 
 const renderTasks = (filter = "") => {
-  tasksContainer.innerHTML = `<p id="pending-tasks">Lista de presentes (<span class="count-value">0</span>)</p>`;
+  tasksContainer.innerHTML = `<p id="pending-tasks">Pode escolher mais de UMA opção</p>`;
 
   let count = 0;
 
