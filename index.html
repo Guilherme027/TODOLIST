@@ -4,31 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chá de Panela - Lista de Presentes</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   </head>
   <body>
     <h1 id="title">CHÁ DE PANELA</h1>
     <div class="app">
       <div class="container">
         <div id="wrapper">
-          <input type="text" placeholder="Itens..." />
-          <button id="add-btn">Adicionar</button>
+          <input type="text" id="search-input" placeholder="Pesquisar presente..." />
         </div>
         <div id="tasks">
           <p id="pending-tasks">
-            Lista de presentes (<span class="count-value">0</span>) .
+            Lista de presentes (<span class="count-value">0</span>)
           </p>
         </div>
       </div>
-      <p id="error">Input não pode estar vazio!</p>
     </div>
     <script type="module" src="script.js"></script>
   </body>

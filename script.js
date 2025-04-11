@@ -2,12 +2,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebas
 import {
   getDatabase,
   ref,
-  set,
   onValue,
   update
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
-// 🔧 Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBeaGfpMpZicoePT7DdseCEn2HlcA0bkA8",
   authDomain: "listas-de-presentes.firebaseapp.com",
@@ -23,73 +21,52 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const tasksRef = ref(db, "tasks");
 
-// 🎁 Lista fixa de presentes (só roda uma vez para popular o banco)
-const fixedTasks = {
-  presente1: { name: "Conjunto de Panelas", completed: false },
-  presente2: { name: "Toalhas de Banho", completed: false },
-  presente3: { name: "Liquidificador", completed: false },
-  presente4: { name: "Jogo de Copos", completed: false },
-  presente5: { name: "Assadeira Refratária", completed: false },
-  presente6: { name: "Faqueiro", completed: false }
-};
-
-
-Object.entries(fixedTasks).forEach(([id, task]) => set(ref(db, `tasks/${id}`), task));
-
-// 🎯 Elementos da página
 const tasksContainer = document.querySelector("#tasks");
 const countValue = document.querySelector(".count-value");
+const searchInput = document.querySelector("#search-input");
 
-// 📌 Atualiza a contagem de presentes disponíveis
-const displayCount = () => {
-  onValue(tasksRef, snapshot => {
-    let total = 0;
-    snapshot.forEach(child => {
-      if (!child.val().completed) total++;
-    });
-    countValue.innerText = total;
-  });
-};
+let allTasks = [];
 
-// 📋 Renderiza os presentes
-const renderTasks = () => {
-  onValue(tasksRef, snapshot => {
-    tasksContainer.innerHTML = '<p id="pending-tasks">Lista de presentes (<span class="count-value">0</span>)</p>';
-    
-    snapshot.forEach(child => {
-      const task = child.val();
-      const taskId = child.key;
+const renderTasks = (filter = "") => {
+  tasksContainer.innerHTML = `<p id="pending-tasks">Lista de presentes (<span class="count-value">0</span>)</p>`;
 
-      const taskEl = document.createElement("div");
-      taskEl.className = "task";
-      taskEl.innerHTML = `
-        <input type="checkbox" class="task-check" ${task.completed ? "checked" : ""}>
-        <span class="taskname ${task.completed ? "completed" : ""}">${task.name}</span>
-      `;
+  let count = 0;
 
-      const checkbox = taskEl.querySelector(".task-check");
+  allTasks.forEach(taskData => {
+    const { task, taskId } = taskData;
 
-      if (task.completed) {
-        checkbox.disabled = true;
+    if (!task.name.toLowerCase().includes(filter.toLowerCase())) return;
+
+    const taskEl = document.createElement("div");
+    taskEl.className = "task";
+    taskEl.innerHTML = `
+      <input type="checkbox" class="task-check" ${task.completed ? "checked" : ""} ${task.completed ? "disabled" : ""}>
+      <span class="taskname ${task.completed ? "completed" : ""}">${task.name}</span>
+    `;
+
+    const checkbox = taskEl.querySelector(".task-check");
+    checkbox.addEventListener("change", () => {
+      if (!task.completed) {
+        update(ref(db, `tasks/${taskId}`), { completed: true });
       }
-
-      checkbox.addEventListener("change", e => {
-        if (!task.completed) {
-          update(ref(db, `tasks/${taskId}`), {
-            completed: true
-          });
-        }
-      });
-
-      tasksContainer.appendChild(taskEl);
     });
 
-    displayCount();
+    if (!task.completed) count++;
+
+    tasksContainer.appendChild(taskEl);
   });
+
+  countValue.innerText = count;
 };
 
-// 🚀 Inicialização
-window.onload = () => {
-  renderTasks();
-  displayCount();
-};
+onValue(tasksRef, snapshot => {
+  allTasks = [];
+  snapshot.forEach(child => {
+    allTasks.push({ taskId: child.key, task: child.val() });
+  });
+  renderTasks(searchInput.value);
+});
+
+searchInput.addEventListener("input", () => {
+  renderTasks(searchInput.value);
+});
