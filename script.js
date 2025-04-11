@@ -39,20 +39,42 @@ const renderTasks = (filter = "") => {
 
     const taskEl = document.createElement("div");
     taskEl.className = "task";
+
+    const quemVaiLevar = task.person ? `<small> - Levado por: ${task.person}</small>` : "";
+
     taskEl.innerHTML = `
-      <input type="checkbox" class="task-check" ${task.completed ? "checked" : ""} ${task.completed ? "disabled" : ""}>
-      <span class="taskname ${task.completed ? "completed" : ""}">${task.name}</span>
+      <input type="checkbox" class="task-check" ${task.completed ? "checked" : ""}>
+      <span class="taskname ${task.completed ? "completed" : ""}">${task.name}${quemVaiLevar}</span>
     `;
 
     const checkbox = taskEl.querySelector(".task-check");
-    checkbox.addEventListener("change", () => {
-      if (!task.completed) {
-        update(ref(db, `tasks/${taskId}`), { completed: true });
+
+    checkbox.addEventListener("change", async () => {
+      if (checkbox.checked) {
+        const nome = prompt("Digite seu nome para marcar esse presente:");
+        if (!nome) {
+          alert("Você precisa digitar um nome para marcar o presente!");
+          checkbox.checked = false;
+          return;
+        }
+        update(ref(db, `tasks/${taskId}`), {
+          completed: true,
+          person: nome
+        });
+      } else {
+        const confirmar = confirm("Deseja desmarcar este item?");
+        if (confirmar) {
+          update(ref(db, `tasks/${taskId}`), {
+            completed: false,
+            person: ""
+          });
+        } else {
+          checkbox.checked = true;
+        }
       }
     });
 
     if (!task.completed) count++;
-
     tasksContainer.appendChild(taskEl);
   });
 
