@@ -154,24 +154,25 @@ body {
 #casal {
   display: block;
   max-width: 100px;
-  width: 20vw;         /* largura relativa à tela */
-  height: auto;        /* mantém proporção da imagem */
-  margin: 0 auto;      /* centraliza horizontalmente */
-  margin-top: -5vh;    /* empurra um pouco pra cima, proporcional à tela */
+  width: 20vw;         
+  height: auto;      
+  margin: 0 auto;      
+  margin-top: -5vh;    
+  margin-left: 2vh;
 }
 
-/* Para telas menores */
+
 @media (max-width: 768px) {
   #casal {
-    width: 30vw;
+    width: 20vw;
     margin-top: -3vh;
   }
 }
 
 @media (max-width: 480px) {
   #casal {
-    width: 40vw;
-    margin-top: -2vh;
+    width: 11vw;
+    margin-top: -5vh;
   }
 }
 
