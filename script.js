@@ -53,7 +53,7 @@ const renderTasks = (filter = "") => {
       if (checkbox.checked) {
         const nome = prompt("Digite seu nome para marcar esse presente:");
         if (!nome) {
-          alert("Você precisa digitar um nome para marcar o presente!");
+          alert("Você precisa digitar seu NOME COMPLETO para marcar o presente!");
           checkbox.checked = false;
           return;
         }
