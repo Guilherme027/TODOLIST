@@ -151,13 +151,32 @@ body {
   border-radius: 0.5em;
 }
 
-#casal{
+#casal {
+  display: flex;
   align-items: center;
-  margin-top: -60px;
-  margin-left: 30px;
-  width: 100px;
-  height: 100px;
+  margin-top: -5vh; /* usa altura da tela para manter proporção */
+  margin-left: 5vw; /* margem esquerda relativa à largura da tela */
+  width: 15vw; /* largura relativa à tela */
+  height: auto; /* altura automática para manter proporção */
+  max-width: 100px; /* limita o tamanho máximo */
 }
+
+@media (max-width: 768px) {
+  #casal {
+    width: 20vw;
+    margin-top: -3vh;
+    margin-left: 4vw;
+  }
+}
+
+@media (max-width: 480px) {
+  #casal {
+    width: 25vw;
+    margin-top: -2vh;
+    margin-left: 2vw;
+  }
+}
+
 
 /* Estilo para o container da lista com rolagem */
 #tasks {
