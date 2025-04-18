@@ -241,6 +241,7 @@ body {
 /* Mobile: parte inferior centralizada */
 @media (max-width: 768px) {
   #pix-container {
+    position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
