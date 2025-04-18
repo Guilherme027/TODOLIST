@@ -244,7 +244,7 @@ body {
   #pix-container {
     position: sticky;
     bottom: 0;
-    margin: 650px auto 0 auto;
+    margin: 600px auto 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
