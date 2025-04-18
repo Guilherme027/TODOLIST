@@ -196,3 +196,57 @@ body {
 #tasks::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
 }
+
+#pix-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+#pix-qr {
+  width: 140px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 8px;
+}
+
+#copy-pix {
+  background-color: #51612b;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+#copy-pix:hover {
+  background-color: #3d4a21;
+}
+
+/* Responsivo: fixar o QR na parte de baixo */
+@media (max-width: 768px) {
+  #pix-container {
+    position: fixed;
+    bottom: 1px;
+    top: auto;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: #fdfce9;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  }
+
+  #pix-qr {
+    width: 160px;
+  }
+}

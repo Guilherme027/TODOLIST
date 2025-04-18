@@ -92,3 +92,13 @@ onValue(tasksRef, snapshot => {
 searchInput.addEventListener("input", () => {
   renderTasks(searchInput.value);
 });
+
+  document.getElementById('copy-pix').addEventListener('click', () => {
+    const chavePix = '8f88032b-1bd5-4e01-ba44-331185e62c66';
+    navigator.clipboard.writeText(chavePix).then(() => {
+      alert('Chave Pix copiada!');
+    }).catch(err => {
+      console.error('Erro ao copiar Pix: ', err);
+    });
+  });
+
